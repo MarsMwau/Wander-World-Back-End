@@ -8,52 +8,46 @@
 
 require 'faker'
 
-puts "Starting to seed data"
+puts "Started seeding data!"
 
-# Create Users
-5.times do
-  User.create!(
+# Create users
+15.times do
+  User.create(
     username: Faker::Internet.unique.username,
     email: Faker::Internet.unique.email,
-    password: 'password'
+    password: 'password',
+    bio: Faker::Lorem.sentence(word_count: 10)
   )
 end
 
 users = User.all
 
-# Create Posts
+# Create posts with comments and likes
 users.each do |user|
-  3.times do
-    post = user.posts.create!(
-      title: Faker::Lorem.sentence,
-      content: Faker::Lorem.paragraph,
-      remote_image_url: Faker::Placeholdit.image(size: '300x300')
-    )
-    puts "Created post #{post.id}"
-  end
-end
-
-posts = Post.all
-
-# Create Comments
-posts.each do |post|
-  users.sample(3).each do |user|
-    comment = post.comments.create!(
-      user: user,
-      content: Faker::Lorem.sentence
-    )
-    puts "Created comment #{comment.id}"
-  end
-end
-
-# Create Likes
-posts.each do |post|
-  users.sample(3).each do |user|
-    like = post.likes.create!(
+  6.times do
+    post = Post.create(
+      title: Faker::Lorem.words(number: 5).join(' '),
+      content: Faker::Lorem.sentences(number: 5).join(' '),
+      image: 'https://i.pinimg.com/564x/ac/6e/38/ac6e38362967ac16d3e0a8280f06dcfa.jpg',
       user: user
     )
-    puts "Created like #{like.id}"
+    puts "Created post #{post.id}"
+    3.times do
+      comment = Comment.create(
+        content: Faker::Lorem.sentence(word_count: 8),
+        user: users.sample,
+        post: post
+      )
+      puts "Created comment #{comment.id}"
+    end
+    rand(0..10).times do
+      like = Like.create(
+        user: users.sample,
+        post: post
+      )
+      puts "Created like #{like.id}"
+    end
   end
 end
 
-puts "Seeding data completed!"
+puts "Seeding completed successfully!"
