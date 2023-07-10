@@ -83,10 +83,12 @@ The following people contributed to this project:
 3. Nathan -https://github.com/nathan-netizenn
 4. William -https://github.com/willtemmy
 
-## Contact Us
+## Front-end Repo Link
+The Front-end was created using React Js
+- https://github.com/MarsMwau/Wander-World-Front-End
 
+## Contact Us
 If you have any questions or suggestions, please contact us at marthamumbua16@gmail.com
 
 ## License
-
 This project is licensed under the [MIT License].
