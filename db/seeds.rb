@@ -11,7 +11,7 @@ require 'faker'
 puts "Started seeding data!"
 
 # Create users
-15.times do
+10.times do
   User.create(
     username: Faker::Internet.unique.username,
     email: Faker::Internet.unique.email,
@@ -24,7 +24,7 @@ users = User.all
 
 # Create posts with comments and likes
 users.each do |user|
-  6.times do
+  10.times do
     post = Post.create(
       title: Faker::Lorem.words(number: 5).join(' '),
       content: Faker::Lorem.sentences(number: 5).join(' '),
@@ -32,7 +32,7 @@ users.each do |user|
       user: user
     )
     puts "Created post #{post.id}"
-    3.times do
+    5.times do
       comment = Comment.create(
         content: Faker::Lorem.sentence(word_count: 8),
         user: users.sample,
@@ -40,7 +40,7 @@ users.each do |user|
       )
       puts "Created comment #{comment.id}"
     end
-    rand(0..10).times do
+    rand(8..25).times do
       like = Like.create(
         user: users.sample,
         post: post
