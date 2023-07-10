@@ -13,7 +13,6 @@ gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
 gem "faker"
 gem 'bcrypt', '~> 3.1.7'
-gem 'carrierwave'
 gem 'active_model_serializers'
 gem 'jwt'
 
