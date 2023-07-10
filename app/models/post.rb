@@ -3,8 +3,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  mount_uploader :image, ImageUploader
-
   validates :title, presence: true
+  validates :image, presence: true
   validates :content, presence: true
 end

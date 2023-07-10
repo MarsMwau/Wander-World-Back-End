@@ -10,4 +10,11 @@ class SessionsController < ApplicationController
       render json: { error: "Invalid username or password" }, status: :unauthorized
     end
   end
+
+  def destroy
+    cookies.delete(:jwt)
+    head :no_content
+    render json: { message: "Logged out successfully" }
+  end
+
 end
